@@ -1,0 +1,14 @@
+SQL, Python & design QUEST
+
+1) Pomocí SQLite3 knihovny pro Python, vytvořte databázi pro soubory v zadané složce. Tabulka souborů bude obsahovat: číselné ID (unique, auto-increment), jméno souboru (kompletní), kompletní cestu, velikost souboru a příponu (extension). Dbejte na správné datové typy (SQL) a správnou strukturaci skriptu Pythonu (importy, definice funkcí, main).
+
+Ve skriptu vytvořte funkce, které:
+- naleznou n největších souborů, kde n je libovolné přirozené číslo ( def get_n_largest_files(n), např. get_n_largest_files(5) )
+- naleznou všechny soubory podle zadané přípony seřazené od největíšho po nejmenší ( def get_files_by_extension(extension_name), např. get_files_by_extension("txt") )
+
+
+
+2) Navrhněte databázi pro školu s tabulkami: studenti, předměty, učebny, vyučující. Databázi navrhněte pomocí diagramu (např. https://dbdiagram.io/d , drawsql.app -- zdarma pro 1 uživatele ):
+ - navrhněte sloupce jednotlivých tabulek a vysvětlete jejich účel a datový typ, 
+ - navrhněte vztahy mezi tabulkami, způsob jejich propojení a role identifikátorů,
+ - napište příklady dotazů na získání konkrétních informací pro hypotetický školní systém.
