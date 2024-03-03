@@ -2,16 +2,19 @@ import os
 import sqlite3
 from sqlite3 import Error
 
+#Merge the given directory with the given file path
 def get_path(directory, file_path):
     return os.path.join(directory, file_path)
 
+#Create the connection and get the cursor with the connection object
 def create_connection(db_path):
     connection = None
     cursor = None
     try:
         connection = sqlite3.connect(db_path)
         cursor = connection.cursor()
-        print("Connection to SQLite DB successful")
+        print(
+            "Connection to SQLite DB successful. Cursor has been created")
     except Error as e:
         print(f"The error '{e}' occurred")
 
@@ -25,6 +28,9 @@ def execute_query(connection, cursor, query, query_placeHolder=None):
         else:
             cursor.execute(query, query_placeHolder)
         connection.commit()
+        print("Query executed successfully")
+    except Error as e:
+        print(f"The error '{e}' occurred")
     finally:
         pass
 
@@ -50,10 +56,11 @@ def insert_files(connection, cursor, directory, query_insert, table_name):
 def main():
     db_directory = 'C:\\Users\\HP\\Desktop'
     files_directory = 'C:\\Users\\HP\\Desktop\\Docs'
-    db_name = 'test.db'
+    db_name = 'app.db'
     my_file_extension = '.txt'
-    
     table_name = 'FILE_INFO'
+    max_numb = 10
+
     query_createTable = f'''
         CREATE TABLE IF NOT EXISTS {table_name} (
         FileID INTEGER PRIMARY KEY AUTOINCREMENT,
@@ -65,7 +72,6 @@ def main():
 
     query_insert = f'INSERT INTO {table_name} (FilePath, FileSize, FileExtension) VALUES (?, ?, ?)'
 
-    max_numb = 10
     query_getNLargestFiles = f"""
         SELECT * FROM {table_name}
         ORDER BY FilePath DESC
@@ -76,6 +82,7 @@ def main():
         WHERE FileExtension=?
         ORDER BY FileExtension DESC"""
     
+
     my_db_path = get_path(db_directory, db_name)
     my_connection, my_cursor = create_connection(my_db_path)
 
