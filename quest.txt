@@ -1,14 +1,14 @@
-SQL, Python & design QUEST
+SQL, Python & QUEST design
 
-1) Pomocí SQLite3 knihovny pro Python, vytvořte databázi pro soubory v zadané složce. Tabulka souborů bude obsahovat: číselné ID (unique, auto-increment), jméno souboru (kompletní), kompletní cestu, velikost souboru a příponu (extension). Dbejte na správné datové typy (SQL) a správnou strukturaci skriptu Pythonu (importy, definice funkcí, main).
+1) Using the SQLite3 library for Python, create a database for the files in the specified folder. The file table will contain: numeric ID (unique, auto-increment), file name (complete), full path, file size and extension. Pay attention to the correct data types (SQL) and the correct structuring of the Python script (imports, function definitions, main).
 
-Ve skriptu vytvořte funkce, které:
-- naleznou n největších souborů, kde n je libovolné přirozené číslo ( def get_n_largest_files(n), např. get_n_largest_files(5) )
-- naleznou všechny soubory podle zadané přípony seřazené od největíšho po nejmenší ( def get_files_by_extension(extension_name), např. get_files_by_extension("txt") )
+In the script, create functions that:
+- find n largest files, where n is any natural number ( def get_n_largest_files(n), e.g. get_n_largest_files(5) )
+- find all files according to the specified extension sorted from largest to smallest ( def get_files_by_extension(extension_name), e.g. get_files_by_extension("txt") )
 
 
 
-2) Navrhněte databázi pro školu s tabulkami: studenti, předměty, učebny, vyučující. Databázi navrhněte pomocí diagramu (např. https://dbdiagram.io/d , drawsql.app -- zdarma pro 1 uživatele ):
- - navrhněte sloupce jednotlivých tabulek a vysvětlete jejich účel a datový typ, 
- - navrhněte vztahy mezi tabulkami, způsob jejich propojení a role identifikátorů,
- - napište příklady dotazů na získání konkrétních informací pro hypotetický školní systém.
+2) Design a database for the school with tables: students, subjects, classrooms, teachers. Design the database using a diagram (e.g. https://dbdiagram.io/d , drawsql.app -- free for 1 user):
+  - design the columns of individual tables and explain their purpose and data type,
+  - propose relationships between tables, the way they are connected and the role of identifiers,
+  - write examples of questions to obtain specific information for a hypothetical school system.
