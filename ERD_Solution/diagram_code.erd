@@ -1,0 +1,54 @@
+Table students {
+  id integer [primary key]
+  first_name varchar(255) [not null]
+  last_name varchar(255) [not null]
+  birth_date date [not null]
+  school_email varchar(255) [not null, unique]
+  address varchar(255) [not null]
+  credits_gained int [default: 0]
+  subjects_enrolled varchar(255) [not null, unique]
+  // Students must be enrolled in a subject
+}
+
+Table teachers {
+  id integer [primary key]
+  first_name varchar(255) [not null]
+  last_name varchar(255) [not null]
+  birth_date date [not null]
+  school_email varchar(255) [not null, unique]
+  address varchar(255) [not null]
+  office_no float
+  subjects_teaching varchar(255)
+  // Teachers do not have to teach each semester; more teachers can participate in the same subject
+}
+
+Table classrooms {
+  id integer [primary key]
+  class_number float [not null, unique]
+  // for exp.: 2.15, 3.10
+  max_capacity integer [not null]
+  subjects_held varchar(255) [unique]
+  // Must be unique but not necessarily used if the class is not used.
+}
+
+Table courses {
+  id integer [primary key]
+  course_name varchar(255) [not null, unique]
+  course_type char(1) [not null] //A, B, or C
+  is_open boolean [default: 1]
+  from_date datetime [not null]
+  to_date datetime [not null]
+  place float [not null]
+  credits integer [not null]
+  // Must have a credit value
+}
+
+REF: "students"."subjects_enrolled" <> "courses"."course_name"
+//Students can entail to one or zero courses, courses might multiple students.
+
+REF: "classrooms"."class_number" < "courses"."place"
+//One class could have zero or more subjects but each subject could have only and only one place.
+
+REF: "teachers"."subjects_teaching" <> "courses"."course_name"
+//Teachers can have multiple or zero courses, courses can have also multiple teachers contributing.
+

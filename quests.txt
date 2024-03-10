@@ -11,4 +11,4 @@ In the script, create functions that:
 2) Design a database for the school with tables: students, subjects, classrooms, teachers. Design the database using a diagram (e.g. https://dbdiagram.io/d , drawsql.app -- free for 1 user):
   - design the columns of individual tables and explain their purpose and data type,
   - propose relationships between tables, the way they are connected and the role of identifiers,
-  - write examples of questions to obtain specific information for a hypothetical school system.
+  - write examples of queries to obtain specific information for a hypothetical school system.

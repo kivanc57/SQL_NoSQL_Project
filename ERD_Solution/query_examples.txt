@@ -1,0 +1,48 @@
+Retrive all the columns from the tables:
+
+SELECT * FROM students;
+
+SELECT * FROM classrooms;
+
+SELECT * FROM courses;
+
+SELECT * FROM teachers;
+
+SELECT * FROM classrooms;
+
+
+Retrieve the number of students who have gained more credits than a given threshold:
+SELECT COUNT(*) as num_students
+FROM num_students
+WHERE credits_gained > {credits_threshold};
+
+
+Retrieve all the open courses and order ascendingly
+SELECT *
+FROM courses
+WHERE is_open = 1
+ORDER BY ASC;
+
+
+Retrieve all students that are enrolled in '{course_name}':
+SELECT students.*
+FROM students
+JOIN students_courses ON students.subjects_enrolled = students_courses.students_subjects_enrolled
+JOIN courses ON students_courses.courses_course_name = courses.course_name
+WHERE courses.course_name = '{course_name}';
+
+
+Retrieve all courses taught by a concrete teacher
+SELECT courses.*
+FROM courses
+JOIN teachers_courses ON courses.course_name = teachers_courses.courses_course_name
+JOIN teachers ON teachers_courses.teachers_subjects_teaching = teachers.subjects_teaching
+WHERE teachers.id = {teacher_id};
+
+
+Retrieve all courses held in a concrete classroom:
+SELECT courses.*
+FROM courses
+JOIN classrooms ON courses.place = classrooms.class_number
+WHERE classrooms.id = {classroom_id};
+
