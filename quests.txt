@@ -1,14 +1,11 @@
-SQL, Python & QUEST design
-
 1) Using the SQLite3 library for Python, create a database for the files in the specified folder. The file table will contain: numeric ID (unique, auto-increment), file name (complete), full path, file size and extension. Pay attention to the correct data types (SQL) and the correct structuring of the Python script (imports, function definitions, main).
-
 In the script, create functions that:
 - find n largest files, where n is any natural number ( def get_n_largest_files(n), e.g. get_n_largest_files(5) )
 - find all files according to the specified extension sorted from largest to smallest ( def get_files_by_extension(extension_name), e.g. get_files_by_extension("txt") )
 
+2) Implement the same program as for SQLite above, but with NoSQL MongoDB: use the code of the previous task, it can be assumed that if the code was written correctly and in general, it will be possible to use most of the functions, the way of connecting to the DB and the way of sending queries will be confused -- the rest software should be retained. The goal is to master the ability to transfer code to a new database with as few changes as possible.
 
-
-2) Design a database for the school with tables: students, subjects, classrooms, teachers. Design the database using a diagram (e.g. https://dbdiagram.io/d , drawsql.app -- free for 1 user):
+3) Design a database for the school with tables: students, subjects, classrooms, teachers. Design the database using a diagram (e.g. https://dbdiagram.io/d , drawsql.app -- free for 1 user):
   - design the columns of individual tables and explain their purpose and data type,
   - propose relationships between tables, the way they are connected and the role of identifiers,
   - write examples of queries to obtain specific information for a hypothetical school system.
