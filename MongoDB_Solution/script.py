@@ -31,7 +31,9 @@ def insert_files(collection, directory):
             file_size = os.path.getsize(file_path)
             file_extension = os.path.splitext(file_path)[1]
 
-            execute_query(collection, {"FilePath": file_path, "FileSize": file_size, "FileExtension": file_extension})
+            execute_query(collection, {
+                "FilePath": file_path, "FileSize": file_size, "FileExtension": file_extension
+            })
 
     print("Files inserted successfully")
 
