@@ -1,0 +1,63 @@
+Table students {
+  student_id integer [primary key]
+  first_name varchar(50) [not null]
+  last_name varchar(50) [not null]
+  birth_date date [not null]
+  school_email varchar(100) [not null, unique]
+  address varchar(255) [not null]
+  credits_gained int [default: 0]
+}
+
+Table teachers {
+  teacher_id integer [primary key]
+  first_name varchar(50) [not null]
+  last_name varchar(50) [not null]
+  birth_date date [not null]
+  school_email varchar(100) [not null, unique]
+  address varchar(255) [not null]
+  office_no varchar(10)
+}
+
+Table classrooms {
+  class_id integer [primary key]
+  class_number varchar(10) [not null, unique]
+  max_capacity integer [not null]
+}
+
+Table courses {
+  course_id integer [primary key]
+  course_name varchar(100) [not null, unique]
+  course_type char(1) [not null] //A, B, or C
+  from_date datetime [not null]
+  to_date datetime [not null]
+  credits integer [not null]
+}
+
+Table teaches {
+  teacherID integer
+  subjectID integer
+}
+
+Table attends {
+  studentID integer
+  subjectID integer
+}
+
+Table assigned {
+  studentID integer
+  courseID integer
+}
+
+Table course_assignment {
+  classID integer
+  subjectID integer
+}
+
+Ref: "teaches"."teacherID" - "teachers"."teacher_id"
+Ref: "teaches"."subjectID" - "courses"."course_id"
+Ref: "attends"."studentID" - "students"."student_id"
+Ref: "attends"."subjectID" - "courses"."course_id"
+Ref: "assigned"."studentID" - "students"."student_id"
+Ref: "assigned"."courseID" - "courses"."course_id"
+Ref: "classrooms"."class_id" - "course_assignment"."classID"
+Ref: "courses"."course_id" - "course_assignment"."subjectID"

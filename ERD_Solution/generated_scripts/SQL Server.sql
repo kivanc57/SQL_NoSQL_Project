@@ -1,74 +1,86 @@
 CREATE TABLE [students] (
-  [id] integer PRIMARY KEY,
-  [first_name] varchar(255) NOT NULL,
-  [last_name] varchar(255) NOT NULL,
+  [student_id] integer PRIMARY KEY,
+  [first_name] varchar(50) NOT NULL,
+  [last_name] varchar(50) NOT NULL,
   [birth_date] date NOT NULL,
-  [school_email] varchar(255) UNIQUE NOT NULL,
+  [school_email] varchar(100) UNIQUE NOT NULL,
   [address] varchar(255) NOT NULL,
-  [credits_gained] int DEFAULT (0),
-  [subjects_enrolled] varchar(255) UNIQUE NOT NULL
+  [credits_gained] int DEFAULT (0)
 )
 GO
 
 CREATE TABLE [teachers] (
-  [id] integer PRIMARY KEY,
-  [first_name] varchar(255) NOT NULL,
-  [last_name] varchar(255) NOT NULL,
+  [teacher_id] integer PRIMARY KEY,
+  [first_name] varchar(50) NOT NULL,
+  [last_name] varchar(50) NOT NULL,
   [birth_date] date NOT NULL,
-  [school_email] varchar(255) UNIQUE NOT NULL,
+  [school_email] varchar(100) UNIQUE NOT NULL,
   [address] varchar(255) NOT NULL,
-  [office_no] float,
-  [subjects_teaching] varchar(255)
+  [office_no] varchar(10)
 )
 GO
 
 CREATE TABLE [classrooms] (
-  [id] integer PRIMARY KEY,
-  [class_number] float UNIQUE NOT NULL,
-  [max_capacity] integer NOT NULL,
-  [subjects_held] varchar(255) UNIQUE
+  [class_id] integer PRIMARY KEY,
+  [class_number] varchar(10) UNIQUE NOT NULL,
+  [max_capacity] integer NOT NULL
 )
 GO
 
 CREATE TABLE [courses] (
-  [id] integer PRIMARY KEY,
-  [course_name] varchar(255) UNIQUE NOT NULL,
+  [course_id] integer PRIMARY KEY,
+  [course_name] varchar(100) UNIQUE NOT NULL,
   [course_type] char(1) NOT NULL,
-  [is_open] boolean DEFAULT (1),
   [from_date] datetime NOT NULL,
   [to_date] datetime NOT NULL,
-  [place] float NOT NULL,
   [credits] integer NOT NULL
 )
 GO
 
-CREATE TABLE [students_courses] (
-  [students_subjects_enrolled] varchar(255),
-  [courses_course_name] varchar(255),
-  PRIMARY KEY ([students_subjects_enrolled], [courses_course_name])
-);
+CREATE TABLE [teaches] (
+  [teacherID] integer,
+  [subjectID] integer
+)
 GO
 
-ALTER TABLE [students_courses] ADD FOREIGN KEY ([students_subjects_enrolled]) REFERENCES [students] ([subjects_enrolled]);
+CREATE TABLE [attends] (
+  [studentID] integer,
+  [subjectID] integer
+)
 GO
 
-ALTER TABLE [students_courses] ADD FOREIGN KEY ([courses_course_name]) REFERENCES [courses] ([course_name]);
+CREATE TABLE [assigned] (
+  [studentID] integer,
+  [courseID] integer
+)
 GO
 
-
-ALTER TABLE [courses] ADD FOREIGN KEY ([place]) REFERENCES [classrooms] ([class_number])
+CREATE TABLE [course_assignment] (
+  [classID] integer,
+  [subjectID] integer
+)
 GO
 
-CREATE TABLE [teachers_courses] (
-  [teachers_subjects_teaching] varchar(255),
-  [courses_course_name] varchar(255),
-  PRIMARY KEY ([teachers_subjects_teaching], [courses_course_name])
-);
+ALTER TABLE [teachers] ADD FOREIGN KEY ([teacher_id]) REFERENCES [teaches] ([teacherID])
 GO
 
-ALTER TABLE [teachers_courses] ADD FOREIGN KEY ([teachers_subjects_teaching]) REFERENCES [teachers] ([subjects_teaching]);
+ALTER TABLE [courses] ADD FOREIGN KEY ([course_id]) REFERENCES [teaches] ([subjectID])
 GO
 
-ALTER TABLE [teachers_courses] ADD FOREIGN KEY ([courses_course_name]) REFERENCES [courses] ([course_name]);
+ALTER TABLE [students] ADD FOREIGN KEY ([student_id]) REFERENCES [attends] ([studentID])
 GO
 
+ALTER TABLE [courses] ADD FOREIGN KEY ([course_id]) REFERENCES [attends] ([subjectID])
+GO
+
+ALTER TABLE [students] ADD FOREIGN KEY ([student_id]) REFERENCES [assigned] ([studentID])
+GO
+
+ALTER TABLE [courses] ADD FOREIGN KEY ([course_id]) REFERENCES [assigned] ([courseID])
+GO
+
+ALTER TABLE [course_assignment] ADD FOREIGN KEY ([classID]) REFERENCES [classrooms] ([class_id])
+GO
+
+ALTER TABLE [course_assignment] ADD FOREIGN KEY ([subjectID]) REFERENCES [courses] ([course_id])
+GO
