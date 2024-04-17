@@ -39,13 +39,13 @@ GO
 
 CREATE TABLE [teaches] (
   [teacherID] integer,
-  [subjectID] integer
+  [courseID] integer
 )
 GO
 
 CREATE TABLE [attends] (
   [studentID] integer,
-  [subjectID] integer
+  [courseID] integer
 )
 GO
 
@@ -57,20 +57,20 @@ GO
 
 CREATE TABLE [course_assignment] (
   [classID] integer,
-  [subjectID] integer
+  [courseID] integer
 )
 GO
 
 ALTER TABLE [teachers] ADD FOREIGN KEY ([teacher_id]) REFERENCES [teaches] ([teacherID])
 GO
 
-ALTER TABLE [courses] ADD FOREIGN KEY ([course_id]) REFERENCES [teaches] ([subjectID])
+ALTER TABLE [courses] ADD FOREIGN KEY ([course_id]) REFERENCES [teaches] ([courseID])
 GO
 
 ALTER TABLE [students] ADD FOREIGN KEY ([student_id]) REFERENCES [attends] ([studentID])
 GO
 
-ALTER TABLE [courses] ADD FOREIGN KEY ([course_id]) REFERENCES [attends] ([subjectID])
+ALTER TABLE [courses] ADD FOREIGN KEY ([course_id]) REFERENCES [attends] ([courseID])
 GO
 
 ALTER TABLE [students] ADD FOREIGN KEY ([student_id]) REFERENCES [assigned] ([studentID])
@@ -82,5 +82,5 @@ GO
 ALTER TABLE [course_assignment] ADD FOREIGN KEY ([classID]) REFERENCES [classrooms] ([class_id])
 GO
 
-ALTER TABLE [course_assignment] ADD FOREIGN KEY ([subjectID]) REFERENCES [courses] ([course_id])
+ALTER TABLE [course_assignment] ADD FOREIGN KEY ([courseID]) REFERENCES [courses] ([course_id])
 GO

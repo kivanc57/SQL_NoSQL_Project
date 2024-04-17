@@ -35,12 +35,12 @@ Table courses {
 
 Table teaches {
   teacherID integer
-  subjectID integer
+  courseID integer
 }
 
 Table attends {
   studentID integer
-  subjectID integer
+  courseID integer
 }
 
 Table assigned {
@@ -50,14 +50,14 @@ Table assigned {
 
 Table course_assignment {
   classID integer
-  subjectID integer
+  courseID integer
 }
 
 Ref: "teaches"."teacherID" - "teachers"."teacher_id"
-Ref: "teaches"."subjectID" - "courses"."course_id"
+Ref: "teaches"."courseID" - "courses"."course_id"
 Ref: "attends"."studentID" - "students"."student_id"
-Ref: "attends"."subjectID" - "courses"."course_id"
+Ref: "attends"."courseID" - "courses"."course_id"
 Ref: "assigned"."studentID" - "students"."student_id"
 Ref: "assigned"."courseID" - "courses"."course_id"
 Ref: "classrooms"."class_id" - "course_assignment"."classID"
-Ref: "courses"."course_id" - "course_assignment"."subjectID"
+Ref: "courses"."course_id" - "course_assignment"."courseID"

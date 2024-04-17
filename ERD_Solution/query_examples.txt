@@ -19,7 +19,7 @@ ORDER BY course_name ASC;
 SELECT students.*
 FROM students
 JOIN attends ON students.student_id = attends.studentID
-JOIN courses ON attends.subjectID = courses.course_id
+JOIN courses ON attends.courseID = courses.course_id
 WHERE courses.course_name = '{course_name}';
 
 -- Retrieve all courses taught by a specific teacher
@@ -32,6 +32,6 @@ WHERE teachers.teacher_id = {teacher_id};
 -- Retrieve all courses held in a specific classroom
 SELECT courses.*
 FROM courses
-JOIN course_assignment ON courses.course_id = course_assignment.subjectID
+JOIN course_assignment ON courses.course_id = course_assignment.courseID
 JOIN classrooms ON course_assignment.classID = classrooms.class_id
 WHERE classrooms.class_id = {classroom_id};

@@ -35,12 +35,12 @@ CREATE TABLE `courses` (
 
 CREATE TABLE `teaches` (
   `teacherID` integer,
-  `subjectID` integer
+  `courseID` integer
 );
 
 CREATE TABLE `attends` (
   `studentID` integer,
-  `subjectID` integer
+  `courseID` integer
 );
 
 CREATE TABLE `assigned` (
@@ -50,16 +50,16 @@ CREATE TABLE `assigned` (
 
 CREATE TABLE `course_assignment` (
   `classID` integer,
-  `subjectID` integer
+  `courseID` integer
 );
 
 ALTER TABLE `teachers` ADD FOREIGN KEY (`teacher_id`) REFERENCES `teaches` (`teacherID`);
 
-ALTER TABLE `courses` ADD FOREIGN KEY (`course_id`) REFERENCES `teaches` (`subjectID`);
+ALTER TABLE `courses` ADD FOREIGN KEY (`course_id`) REFERENCES `teaches` (`courseID`);
 
 ALTER TABLE `students` ADD FOREIGN KEY (`student_id`) REFERENCES `attends` (`studentID`);
 
-ALTER TABLE `courses` ADD FOREIGN KEY (`course_id`) REFERENCES `attends` (`subjectID`);
+ALTER TABLE `courses` ADD FOREIGN KEY (`course_id`) REFERENCES `attends` (`courseID`);
 
 ALTER TABLE `students` ADD FOREIGN KEY (`student_id`) REFERENCES `assigned` (`studentID`);
 
@@ -67,4 +67,4 @@ ALTER TABLE `courses` ADD FOREIGN KEY (`course_id`) REFERENCES `assigned` (`cour
 
 ALTER TABLE `course_assignment` ADD FOREIGN KEY (`classID`) REFERENCES `classrooms` (`class_id`);
 
-ALTER TABLE `course_assignment` ADD FOREIGN KEY (`subjectID`) REFERENCES `courses` (`course_id`);
+ALTER TABLE `course_assignment` ADD FOREIGN KEY (`courseID`) REFERENCES `courses` (`course_id`);
